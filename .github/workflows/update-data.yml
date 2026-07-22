@@ -14,6 +14,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
+      - run: ls -R
+      - run: python fetch_data.py
+      - run: cat data/dashboard.json | head -20   # zeigt, ob die Datei entstand
       - run: python fetch_data.py
       - name: Commit und Push
         run: |
