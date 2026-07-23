@@ -8,209 +8,69 @@
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
 
   :root {
-    --paper:      #F5F3EC;
-    --panel:      #FBFAF6;
-    --ink:        #191B1F;
-    --ink-soft:   #6A6B66;
-    --line:       #DDD9CD;
-    --accent:     #1F7A5A;   /* Signal-Gruen fuer gute Werte */
-    --accent-dim: #C9DED4;
-    --display: 'Space Grotesk', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-    --body: 'Inter', sans-serif;
+    --paper:#F5F3EC; --panel:#FBFAF6; --ink:#191B1F; --ink-soft:#6A6B66;
+    --line:#DDD9CD; --accent:#1F7A5A; --accent-dim:#C9DED4;
+    --display:'Space Grotesk',sans-serif; --mono:'IBM Plex Mono',monospace; --body:'Inter',sans-serif;
   }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--paper); color:var(--ink); font-family:var(--body);
+         line-height:1.5; -webkit-font-smoothing:antialiased; padding:3rem 1.25rem 5rem; }
+  .wrap { max-width:880px; margin:0 auto; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  header { margin-bottom:2.5rem; }
+  .eyebrow { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.18em;
+             text-transform:uppercase; color:var(--accent); margin-bottom:0.75rem; }
+  h1 { font-family:var(--display); font-weight:700; font-size:clamp(2.1rem,6vw,3.4rem);
+       letter-spacing:-0.03em; line-height:1.02; }
+  .sub { color:var(--ink-soft); max-width:48ch; margin-top:0.85rem; font-size:0.96rem; }
+  .updated { font-family:var(--mono); font-size:0.75rem; color:var(--ink-soft); margin-top:1rem; }
 
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    padding: 3rem 1.25rem 5rem;
-  }
+  .controls { background:var(--panel); border:1px solid var(--line); border-radius:4px;
+              padding:1.25rem 1.4rem 1.4rem; margin-bottom:2.5rem; }
+  .controls-head { display:flex; justify-content:space-between; align-items:baseline;
+                   margin-bottom:1.1rem; gap:1rem; flex-wrap:wrap; }
+  .controls-title { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em;
+                    text-transform:uppercase; color:var(--ink-soft); }
+  .reset { font-family:var(--mono); font-size:0.72rem; background:none; border:none;
+           color:var(--accent); cursor:pointer; padding:0; text-decoration:underline;
+           text-underline-offset:3px; }
+  .sliders { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1.3rem; }
+  .slider label { display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:0.5rem; }
+  .slider label b { font-family:var(--mono); font-weight:500; }
+  input[type=range] { width:100%; accent-color:var(--accent); cursor:pointer; }
 
-  .wrap { max-width: 880px; margin: 0 auto; }
+  .row { display:grid; grid-template-columns:2.6rem 1fr auto; gap:1rem; align-items:center;
+         padding:1.15rem 0; border-top:1px solid var(--line); }
+  .row:last-child { border-bottom:1px solid var(--line); }
+  .rank { font-family:var(--mono); font-size:1.15rem; color:var(--ink-soft); }
+  .row:first-of-type .rank { color:var(--accent); }
+  .name-line { display:flex; align-items:baseline; gap:0.55rem; flex-wrap:wrap; }
+  .city { font-family:var(--display); font-weight:500; font-size:1.28rem; letter-spacing:-0.01em; }
+  .state { font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); }
+  .meter { height:8px; background:var(--accent-dim); border-radius:2px; margin-top:0.55rem; overflow:hidden; }
+  .meter > span { display:block; height:100%; background:var(--accent); border-radius:2px;
+                  width:0; transition:width 0.6s cubic-bezier(.2,.7,.2,1); }
+  .subs { display:flex; gap:1.3rem; margin-top:0.7rem; flex-wrap:wrap; }
+  .sub-metric { flex:1; min-width:88px; max-width:130px; }
+  .sub-metric .cap { display:flex; justify-content:space-between; font-family:var(--mono);
+                     font-size:0.66rem; color:var(--ink-soft); margin-bottom:0.28rem; }
+  .mini { height:3px; background:var(--line); border-radius:2px; overflow:hidden; }
+  .mini > span { display:block; height:100%; background:var(--ink); width:0;
+                 transition:width 0.6s cubic-bezier(.2,.7,.2,1); }
+  .score { font-family:var(--mono); font-weight:500; font-size:1.7rem; text-align:right;
+           font-variant-numeric:tabular-nums; }
 
-  /* ---- Kopf ---- */
-  header { margin-bottom: 2.5rem; }
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
-  h1 {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(2.1rem, 6vw, 3.4rem);
-    letter-spacing: -0.03em;
-    line-height: 1.02;
-  }
-  .sub {
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin-top: 0.85rem;
-    font-size: 0.96rem;
-  }
-  .updated {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--ink-soft);
-    margin-top: 1rem;
-  }
+  .empty { border:1px dashed var(--line); border-radius:4px; padding:2.5rem 1.5rem;
+           text-align:center; color:var(--ink-soft); }
+  .empty code { font-family:var(--mono); background:var(--panel); padding:0.1rem 0.35rem;
+                border-radius:3px; color:var(--ink); }
+  footer { margin-top:3rem; font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); }
 
-  /* ---- Gewichtsregler ---- */
-  .controls {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 1.25rem 1.4rem 1.4rem;
-    margin-bottom: 2.5rem;
+  @media (max-width:560px) {
+    .score { font-size:1.35rem; }
+    .row { grid-template-columns:2rem 1fr auto; }
   }
-  .controls-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 1.1rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .controls-title {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .reset {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    background: none;
-    border: none;
-    color: var(--accent);
-    cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .sliders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-  .slider label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.82rem;
-    margin-bottom: 0.5rem;
-  }
-  .slider label b { font-family: var(--mono); font-weight: 500; }
-  input[type=range] {
-    width: 100%;
-    accent-color: var(--accent);
-    cursor: pointer;
-  }
-
-  /* ---- Rangliste ---- */
-  .row {
-    display: grid;
-    grid-template-columns: 2.6rem 1fr auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 1.15rem 0;
-    border-top: 1px solid var(--line);
-    transition: opacity 0.3s;
-  }
-  .row:last-child { border-bottom: 1px solid var(--line); }
-  .rank {
-    font-family: var(--mono);
-    font-size: 1.15rem;
-    color: var(--ink-soft);
-  }
-  .row:first-of-type .rank { color: var(--accent); }
-
-  .name-line { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
-  .city {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 1.28rem;
-    letter-spacing: -0.01em;
-  }
-  .state { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); }
-
-  .meter {
-    height: 8px;
-    background: var(--accent-dim);
-    border-radius: 2px;
-    margin-top: 0.55rem;
-    overflow: hidden;
-  }
-  .meter > span {
-    display: block;
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    width: 0;
-    transition: width 0.6s cubic-bezier(.2,.7,.2,1);
-  }
-
-  .subs { display: flex; gap: 1.4rem; margin-top: 0.7rem; }
-  .sub-metric { flex: 1; max-width: 130px; }
-  .sub-metric .cap {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    color: var(--ink-soft);
-    margin-bottom: 0.28rem;
-  }
-  .mini { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
-  .mini > span {
-    display: block; height: 100%;
-    background: var(--ink); width: 0;
-    transition: width 0.6s cubic-bezier(.2,.7,.2,1);
-  }
-
-  .score {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 1.7rem;
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
-
-  /* ---- Leer / Fehler ---- */
-  .empty {
-    border: 1px dashed var(--line);
-    border-radius: 4px;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    color: var(--ink-soft);
-  }
-  .empty code {
-    font-family: var(--mono);
-    background: var(--panel);
-    padding: 0.1rem 0.35rem;
-    border-radius: 3px;
-    color: var(--ink);
-  }
-
-  footer {
-    margin-top: 3rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--ink-soft);
-  }
-
-  @media (max-width: 560px) {
-    .sliders { grid-template-columns: 1fr; gap: 1rem; }
-    .subs { flex-wrap: wrap; gap: 0.9rem 1.4rem; }
-    .score { font-size: 1.35rem; }
-    .row { grid-template-columns: 2rem 1fr auto; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .meter > span, .mini > span { transition: none; }
-  }
+  @media (prefers-reduced-motion:reduce) { .meter > span, .mini > span { transition:none; } }
 </style>
 </head>
 <body>
@@ -219,7 +79,7 @@
     <div class="eyebrow">Datenbasiertes Ranking</div>
     <h1>Wie attraktiv sind Deutschlands Städte?</h1>
     <p class="sub">Ein Score aus drei offenen Datenquellen: Sonnenstunden (DWD),
-       Freizeit- und Kulturangebot (OpenStreetMap) und ÖPNV-Anbindung (Deutsche Bahn).
+       Freizeit-, Kultur- und ÖPNV-Angebot (OpenStreetMap) und Luftqualität (Open-Meteo).
        Verschieb die Regler, um zu gewichten, was dir wichtig ist.</p>
     <div class="updated" id="updated"></div>
   </header>
@@ -229,58 +89,42 @@
       <span class="controls-title">Gewichtung</span>
       <button class="reset" id="reset">zurücksetzen</button>
     </div>
-    <div class="sliders">
-      <div class="slider">
-        <label>☀︎ Sonne <b id="w-weather">30</b></label>
-        <input type="range" id="s-weather" min="0" max="100" value="30">
-      </div>
-      <div class="slider">
-        <label>♣ Kultur <b id="w-pois">40</b></label>
-        <input type="range" id="s-pois" min="0" max="100" value="40">
-      </div>
-      <div class="slider">
-        <label>⚇ ÖPNV <b id="w-transit">30</b></label>
-        <input type="range" id="s-transit" min="0" max="100" value="30">
-      </div>
-    </div>
+    <div class="sliders" id="sliders"></div>
   </section>
 
   <main id="list"></main>
-
   <footer id="footer"></footer>
 </div>
 
 <script>
 const METRICS = [
-  { key: "weather", label: "Sonne" },
-  { key: "pois",    label: "Kultur" },
-  { key: "transit", label: "ÖPNV" },
+  { key:"weather", label:"Sonne"  },
+  { key:"pois",    label:"Kultur" },
+  { key:"transit", label:"ÖPNV"   },
+  { key:"air",     label:"Luft"   },
 ];
 
 let CITIES = [];
+let DEFAULT_W = {};
 
 async function load() {
   try {
-    const res = await fetch("data/dashboard.json", { cache: "no-store" });
+    const res = await fetch("data/dashboard.json", { cache:"no-store" });
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
     CITIES = data.cities || [];
+    DEFAULT_W = data.weights || {};
 
-    // Startgewichte aus der Datei uebernehmen (auf 0..100 skaliert)
-    const w = data.weights || { weather: 0.3, pois: 0.4, transit: 0.3 };
-    document.getElementById("s-weather").value = Math.round(w.weather * 100);
-    document.getElementById("s-pois").value    = Math.round(w.pois * 100);
-    document.getElementById("s-transit").value = Math.round(w.transit * 100);
+    buildControls();
 
     if (data.updated) {
       const d = new Date(data.updated);
       document.getElementById("updated").textContent =
-        "Stand: " + d.toLocaleString("de-DE", { dateStyle: "medium", timeStyle: "short" });
+        "Stand: " + d.toLocaleString("de-DE", { dateStyle:"medium", timeStyle:"short" });
     }
     document.getElementById("controls").hidden = false;
     document.getElementById("footer").textContent =
-      CITIES.length + " Städte · Quellen: DWD · OpenStreetMap · Deutsche Bahn";
-
+      CITIES.length + " Städte · Quellen: DWD · OpenStreetMap · Open-Meteo";
     render();
   } catch (e) {
     document.getElementById("list").innerHTML =
@@ -291,25 +135,32 @@ async function load() {
   }
 }
 
+function buildControls() {
+  document.getElementById("sliders").innerHTML = METRICS.map(m => {
+    const v = Math.round((DEFAULT_W[m.key] || 0) * 100);
+    return `<div class="slider">
+      <label>${m.label} <b id="w-${m.key}">${v}</b></label>
+      <input type="range" id="s-${m.key}" min="0" max="100" value="${v}">
+    </div>`;
+  }).join("");
+  METRICS.forEach(m =>
+    document.getElementById("s-" + m.key).addEventListener("input", render));
+}
+
 function weights() {
-  const w = {
-    weather: +document.getElementById("s-weather").value,
-    pois:    +document.getElementById("s-pois").value,
-    transit: +document.getElementById("s-transit").value,
-  };
-  document.getElementById("w-weather").textContent = w.weather;
-  document.getElementById("w-pois").textContent    = w.pois;
-  document.getElementById("w-transit").textContent = w.transit;
+  const w = {};
+  METRICS.forEach(m => {
+    w[m.key] = +document.getElementById("s-" + m.key).value;
+    document.getElementById("w-" + m.key).textContent = w[m.key];
+  });
   return w;
 }
 
 function scoreOf(city, w) {
-  const total = w.weather + w.pois + w.transit;
+  const total = METRICS.reduce((s, m) => s + w[m.key], 0);
   if (total === 0) return 0;
   const n = city.normalized || {};
-  const s = (n.weather || 0) * w.weather
-          + (n.pois    || 0) * w.pois
-          + (n.transit || 0) * w.transit;
+  const s = METRICS.reduce((s, m) => s + (n[m.key] || 0) * w[m.key], 0);
   return s / total;
 }
 
@@ -342,7 +193,6 @@ function render() {
       </div>`;
   }).join("");
 
-  // Balken nach dem Einfuegen animiert auf ihre Breite bringen
   requestAnimationFrame(() => {
     list.querySelectorAll("[data-w]").forEach(el => {
       el.style.width = Math.max(0, Math.min(100, +el.dataset.w)) + "%";
@@ -350,13 +200,9 @@ function render() {
   });
 }
 
-["s-weather", "s-pois", "s-transit"].forEach(id =>
-  document.getElementById(id).addEventListener("input", render));
-
 document.getElementById("reset").addEventListener("click", () => {
-  document.getElementById("s-weather").value = 30;
-  document.getElementById("s-pois").value = 40;
-  document.getElementById("s-transit").value = 30;
+  METRICS.forEach(m =>
+    document.getElementById("s-" + m.key).value = Math.round((DEFAULT_W[m.key] || 0) * 100));
   render();
 });
 
