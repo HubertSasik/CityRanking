@@ -4,13 +4,11 @@ fetch_data.py
 Holt Kennzahlen fuer deutsche Staedte aus drei APIs, berechnet einen
 Attraktivitaets-Score und schreibt das Ergebnis als JSON fuer das Dashboard.
 
-APIs (kostenlos, ohne Key):
-  1. Bright Sky (DWD)    -> durchschnittliche Sonnenstunden
-  2. Overpass API (OSM)  -> Anzahl Freizeit-/Kultur-POIs
-  3. DB transport.rest   -> Anzahl OEPNV-Haltestellen in der Naehe
-
-Diese Version gibt bei jedem Fehlschlag HTTP-Status und Serverantwort aus,
-damit man im Actions-Log genau sieht, WARUM eine API nichts liefert.
+APIs (alle kostenlos, ohne Key):
+  1. Bright Sky (DWD)   -> durchschnittliche Sonnenstunden        -> "weather"
+  2. Overpass (OSM)     -> Kultur-/Freizeit-POIs + OEPNV-Haltestellen
+                                                    -> "pois" und "transit"
+  3. Open-Meteo         -> Luftqualitaet (European AQI)           -> "air"
 """
 
 import json
@@ -27,7 +25,12 @@ import requests
 INPUT_PATH = Path("cities.json")
 OUTPUT_PATH = Path("data/dashboard.json")
 
-WEIGHTS = {"weather": 0.3, "pois": 0.4, "transit": 0.3}
+# Gewichte der Kennzahlen (Summe egal, wird normalisiert)
+WEIGHTS = {"weather": 0.25, "pois": 0.30, "transit": 0.25, "air": 0.20}
+
+# Bei diesen Kennzahlen ist WENIGER besser -> Skala wird gedreht.
+INVERT = {"air"}
+
 RADIUS_M = 3000
 HEADERS = {"User-Agent": "city-attractiveness-dashboard/1.0"}
 
@@ -60,62 +63,69 @@ def fetch_weather(city):
 
 
 # ---------------------------------------------------------------------------
-# API 2: Overpass (OSM) -> Anzahl Freizeit-/Kultur-POIs  (mit Retry + Backoff)
+# API 2: Overpass (OSM) -> Kultur-POIs UND OEPNV-Haltestellen in EINER Abfrage
 # ---------------------------------------------------------------------------
 
-def fetch_pois(city):
+def fetch_osm(city):
+    r_, lat, lng = RADIUS_M, city["lat"], city["lng"]
     query = f"""
     [out:json][timeout:90];
     (
-      node["amenity"~"restaurant|cafe|bar|theatre|cinema"](around:{RADIUS_M},{city['lat']},{city['lng']});
-      node["leisure"="park"](around:{RADIUS_M},{city['lat']},{city['lng']});
-      node["tourism"="museum"](around:{RADIUS_M},{city['lat']},{city['lng']});
-    );
-    out count;
+      node["amenity"~"restaurant|cafe|bar|theatre|cinema"](around:{r_},{lat},{lng});
+      node["leisure"="park"](around:{r_},{lat},{lng});
+      node["tourism"="museum"](around:{r_},{lat},{lng});
+    )->.kultur;
+    (
+      node["highway"="bus_stop"](around:{r_},{lat},{lng});
+      node["railway"~"station|halt|tram_stop"](around:{r_},{lat},{lng});
+      node["public_transport"="platform"](around:{r_},{lat},{lng});
+    )->.oepnv;
+    .kultur out count;
+    .oepnv out count;
     """
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             r = requests.post("https://overpass-api.de/api/interpreter",
                               data={"data": query}, headers=HEADERS, timeout=120)
             if r.status_code == 200:
-                elements = r.json().get("elements", [])
-                if elements and "tags" in elements[0]:
-                    return int(elements[0]["tags"]["total"])
-                print(f"  ! POIs unerwartete Antwort fuer {city['name']}: {r.text[:200]}")
-                return None
-            print(f"  ! POIs HTTP {r.status_code} fuer {city['name']} "
-                  f"(Versuch {attempt + 1}/3): {r.text[:150]}")
-            time.sleep(6 * (attempt + 1))
+                counts = [int(e["tags"]["total"])
+                          for e in r.json().get("elements", [])
+                          if e.get("type") == "count"]
+                if len(counts) >= 2:
+                    return {"pois": counts[0], "transit": counts[1]}
+                print(f"  ! OSM unerwartete Antwort fuer {city['name']}: {r.text[:200]}")
+                return {"pois": None, "transit": None}
+            # 429/504 = gedrosselt/ueberlastet -> warten und erneut versuchen
+            print(f"  ! OSM HTTP {r.status_code} fuer {city['name']} "
+                  f"(Versuch {attempt + 1}/4): {r.text[:120]}")
+            time.sleep(8 * (attempt + 1))
         except Exception as e:
-            print(f"  ! POIs Fehler fuer {city['name']} (Versuch {attempt + 1}/3): {e}")
-            time.sleep(6)
-    return None
+            print(f"  ! OSM Fehler fuer {city['name']} (Versuch {attempt + 1}/4): {e}")
+            time.sleep(8)
+    return {"pois": None, "transit": None}
 
 
 # ---------------------------------------------------------------------------
-# API 3: DB transport.rest -> Anzahl OEPNV-Haltestellen in der Naehe
+# API 3: Open-Meteo -> Luftqualitaet (European AQI, niedriger = besser)
 # ---------------------------------------------------------------------------
 
-def fetch_transit(city):
+def fetch_air(city):
     params = {"latitude": city["lat"], "longitude": city["lng"],
-              "results": 100, "distance": RADIUS_M, "stops": "true", "poi": "false"}
+              "current": "european_aqi"}
     try:
-        r = requests.get("https://v6.db.transport.rest/locations/nearby",
+        r = requests.get("https://air-quality-api.open-meteo.com/v1/air-quality",
                          params=params, headers=HEADERS, timeout=30)
         if r.status_code != 200:
-            print(f"  ! OEPNV HTTP {r.status_code} fuer {city['name']}: {r.text[:200]}")
+            print(f"  ! Luft HTTP {r.status_code} fuer {city['name']}: {r.text[:150]}")
             return None
-        stops = r.json()
-        if isinstance(stops, list):
-            return len(stops)
-        print(f"  ! OEPNV unerwartete Antwort fuer {city['name']}: {str(stops)[:200]}")
+        return r.json().get("current", {}).get("european_aqi")
     except Exception as e:
-        print(f"  ! OEPNV Fehler fuer {city['name']}: {e}")
-    return None
+        print(f"  ! Luft Fehler fuer {city['name']}: {e}")
+        return None
 
 
 # ---------------------------------------------------------------------------
-# Normalisierung 0..100 (Min-Max). Niedrigster Wert -> 0, hoechster -> 100.
+# Normalisierung 0..100 (Min-Max)
 # ---------------------------------------------------------------------------
 
 def normalize(values):
@@ -140,19 +150,29 @@ def main():
 
     for city in cities:
         print(f"Verarbeite {city['name']} ...")
+        osm = fetch_osm(city)
         city["metrics"] = {
             "weather": fetch_weather(city),
-            "pois": fetch_pois(city),
-            "transit": fetch_transit(city),
+            "pois": osm["pois"],
+            "transit": osm["transit"],
+            "air": fetch_air(city),
         }
-        time.sleep(2)
+        time.sleep(4)   # hoeflich zu Overpass sein
 
     print("\n--- Datenabdeckung ---")
     for key in WEIGHTS:
         ok = sum(1 for c in cities if c["metrics"][key] is not None)
         print(f"  {key:8s}: {ok}/{len(cities)} Staedte mit Daten")
 
-    normed = {key: normalize([c["metrics"][key] for c in cities]) for key in WEIGHTS}
+    # normalisieren, invertierte Kennzahlen umdrehen
+    normed = {}
+    for key in WEIGHTS:
+        vals = [c["metrics"][key] for c in cities]
+        n = normalize(vals)
+        if key in INVERT:
+            n = [round(100 - x, 1) if vals[i] is not None else 0
+                 for i, x in enumerate(n)]
+        normed[key] = n
 
     total_weight = sum(WEIGHTS.values())
     for i, city in enumerate(cities):
