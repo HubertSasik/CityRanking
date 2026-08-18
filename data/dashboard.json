@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-17T04:59:21.100244+00:00",
+  "updated": "2026-08-18T04:51:45.153773+00:00",
   "weights": {
     "weather": 0.25,
     "pois": 0.3,
@@ -8,27 +8,6 @@
   },
   "cities": [
     {
-      "id": "berlin",
-      "name": "Berlin",
-      "state": "Berlin",
-      "population": 3878100,
-      "lat": 52.52,
-      "lng": 13.405,
-      "metrics": {
-        "weather": 10.87,
-        "pois": 2139,
-        "transit": 631,
-        "air": 13
-      },
-      "normalized": {
-        "weather": 83.0,
-        "pois": 100.0,
-        "transit": 85.3,
-        "air": 100.0
-      },
-      "score": 92.1
-    },
-    {
       "id": "frankfurt",
       "name": "Frankfurt am Main",
       "state": "Hessen",
@@ -36,165 +15,39 @@
       "lat": 50.1109,
       "lng": 8.6821,
       "metrics": {
-        "weather": 10.91,
-        "pois": 1472,
+        "weather": 11.06,
+        "pois": 1473,
         "transit": 625,
-        "air": 20
-      },
-      "normalized": {
-        "weather": 85.5,
-        "pois": 63.3,
-        "transit": 84.1,
-        "air": 50.0
-      },
-      "score": 71.4
-    },
-    {
-      "id": "muenchen",
-      "name": "München",
-      "state": "Bayern",
-      "population": 1512000,
-      "lat": 48.1351,
-      "lng": 11.582,
-      "metrics": {
-        "weather": 11.13,
-        "pois": 1887,
-        "transit": 213,
-        "air": 27
-      },
-      "normalized": {
-        "weather": 98.8,
-        "pois": 86.1,
-        "transit": 0.0,
-        "air": 0.0
-      },
-      "score": 50.5
-    },
-    {
-      "id": "leipzig",
-      "name": "Leipzig",
-      "state": "Sachsen",
-      "population": 616000,
-      "lat": 51.3397,
-      "lng": 12.3731,
-      "metrics": {
-        "weather": 11.15,
-        "pois": 693,
-        "transit": 506,
         "air": null
       },
       "normalized": {
         "weather": 100.0,
-        "pois": 20.3,
-        "transit": 59.8,
+        "pois": 63.3,
+        "transit": 84.1,
         "air": 0
       },
-      "score": 46.0
+      "score": 65.0
     },
     {
-      "id": "duesseldorf",
-      "name": "Düsseldorf",
-      "state": "Nordrhein-Westfalen",
-      "population": 631000,
-      "lat": 51.2277,
-      "lng": 6.7735,
+      "id": "berlin",
+      "name": "Berlin",
+      "state": "Berlin",
+      "population": 3878100,
+      "lat": 52.52,
+      "lng": 13.405,
       "metrics": {
-        "weather": 9.54,
-        "pois": 1016,
-        "transit": 703,
-        "air": 23
+        "weather": 9.6,
+        "pois": 2140,
+        "transit": 630,
+        "air": 16
       },
       "normalized": {
-        "weather": 2.4,
-        "pois": 38.1,
-        "transit": 100.0,
-        "air": 28.6
+        "weather": 14.1,
+        "pois": 100.0,
+        "transit": 85.1,
+        "air": 42.9
       },
-      "score": 42.8
-    },
-    {
-      "id": "hamburg",
-      "name": "Hamburg",
-      "state": "Hamburg",
-      "population": 1902000,
-      "lat": 53.5511,
-      "lng": 9.9937,
-      "metrics": {
-        "weather": 9.73,
-        "pois": 1494,
-        "transit": 404,
-        "air": null
-      },
-      "normalized": {
-        "weather": 13.9,
-        "pois": 64.5,
-        "transit": 39.0,
-        "air": 0
-      },
-      "score": 32.6
-    },
-    {
-      "id": "essen",
-      "name": "Essen",
-      "state": "Nordrhein-Westfalen",
-      "population": 579000,
-      "lat": 51.4556,
-      "lng": 7.0116,
-      "metrics": {
-        "weather": 9.54,
-        "pois": 324,
-        "transit": 397,
-        "air": 13
-      },
-      "normalized": {
-        "weather": 2.4,
-        "pois": 0.0,
-        "transit": 37.6,
-        "air": 100.0
-      },
-      "score": 30.0
-    },
-    {
-      "id": "dortmund",
-      "name": "Dortmund",
-      "state": "Nordrhein-Westfalen",
-      "population": 587000,
-      "lat": 51.5136,
-      "lng": 7.4653,
-      "metrics": {
-        "weather": 9.54,
-        "pois": 352,
-        "transit": 385,
-        "air": 13
-      },
-      "normalized": {
-        "weather": 2.4,
-        "pois": 1.5,
-        "transit": 35.1,
-        "air": 100.0
-      },
-      "score": 29.8
-    },
-    {
-      "id": "stuttgart",
-      "name": "Stuttgart",
-      "state": "Baden-Württemberg",
-      "population": 632000,
-      "lat": 48.7758,
-      "lng": 9.1829,
-      "metrics": {
-        "weather": 10.39,
-        "pois": 719,
-        "transit": 388,
-        "air": null
-      },
-      "normalized": {
-        "weather": 53.9,
-        "pois": 21.8,
-        "transit": 35.7,
-        "air": 0
-      },
-      "score": 28.9
+      "score": 63.4
     },
     {
       "id": "koeln",
@@ -204,18 +57,165 @@
       "lat": 50.9375,
       "lng": 6.9603,
       "metrics": {
-        "weather": 9.5,
+        "weather": 9.91,
         "pois": 1254,
+        "transit": 397,
+        "air": 13
+      },
+      "normalized": {
+        "weather": 32.4,
+        "pois": 51.2,
+        "transit": 37.6,
+        "air": 85.7
+      },
+      "score": 50.0
+    },
+    {
+      "id": "hamburg",
+      "name": "Hamburg",
+      "state": "Hamburg",
+      "population": 1902000,
+      "lat": 53.5511,
+      "lng": 9.9937,
+      "metrics": {
+        "weather": 9.36,
+        "pois": 1494,
+        "transit": 404,
+        "air": 14
+      },
+      "normalized": {
+        "weather": 0.0,
+        "pois": 64.4,
+        "transit": 39.0,
+        "air": 71.4
+      },
+      "score": 43.4
+    },
+    {
+      "id": "leipzig",
+      "name": "Leipzig",
+      "state": "Sachsen",
+      "population": 616000,
+      "lat": 51.3397,
+      "lng": 12.3731,
+      "metrics": {
+        "weather": 10.38,
+        "pois": 692,
+        "transit": 508,
+        "air": 17
+      },
+      "normalized": {
+        "weather": 60.0,
+        "pois": 20.2,
+        "transit": 60.2,
+        "air": 28.6
+      },
+      "score": 41.8
+    },
+    {
+      "id": "muenchen",
+      "name": "München",
+      "state": "Bayern",
+      "population": 1512000,
+      "lat": 48.1351,
+      "lng": 11.582,
+      "metrics": {
+        "weather": 10.32,
+        "pois": 1887,
+        "transit": 213,
+        "air": null
+      },
+      "normalized": {
+        "weather": 56.5,
+        "pois": 86.1,
+        "transit": 0.0,
+        "air": 0
+      },
+      "score": 40.0
+    },
+    {
+      "id": "duesseldorf",
+      "name": "Düsseldorf",
+      "state": "Nordrhein-Westfalen",
+      "population": 631000,
+      "lat": 51.2277,
+      "lng": 6.7735,
+      "metrics": {
+        "weather": 9.51,
+        "pois": 1016,
+        "transit": 703,
+        "air": null
+      },
+      "normalized": {
+        "weather": 8.8,
+        "pois": 38.1,
+        "transit": 100.0,
+        "air": 0
+      },
+      "score": 38.6
+    },
+    {
+      "id": "dortmund",
+      "name": "Dortmund",
+      "state": "Nordrhein-Westfalen",
+      "population": 587000,
+      "lat": 51.5136,
+      "lng": 7.4653,
+      "metrics": {
+        "weather": 9.51,
+        "pois": 352,
+        "transit": 385,
+        "air": 12
+      },
+      "normalized": {
+        "weather": 8.8,
+        "pois": 1.5,
+        "transit": 35.1,
+        "air": 100.0
+      },
+      "score": 31.4
+    },
+    {
+      "id": "stuttgart",
+      "name": "Stuttgart",
+      "state": "Baden-Württemberg",
+      "population": 632000,
+      "lat": 48.7758,
+      "lng": 9.1829,
+      "metrics": {
+        "weather": 9.95,
+        "pois": 719,
+        "transit": 388,
+        "air": 19
+      },
+      "normalized": {
+        "weather": 34.7,
+        "pois": 21.7,
+        "transit": 35.7,
+        "air": 0.0
+      },
+      "score": 24.1
+    },
+    {
+      "id": "essen",
+      "name": "Essen",
+      "state": "Nordrhein-Westfalen",
+      "population": 579000,
+      "lat": 51.4556,
+      "lng": 7.0116,
+      "metrics": {
+        "weather": 9.51,
+        "pois": 325,
         "transit": 397,
         "air": null
       },
       "normalized": {
-        "weather": 0.0,
-        "pois": 51.2,
+        "weather": 8.8,
+        "pois": 0.0,
         "transit": 37.6,
         "air": 0
       },
-      "score": 24.8
+      "score": 11.6
     }
   ]
 }
