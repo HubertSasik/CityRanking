@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T04:51:45.153773+00:00",
+  "updated": "2026-08-19T04:50:58.964474+00:00",
   "weights": {
     "weather": 0.25,
     "pois": 0.3,
@@ -15,18 +15,18 @@
       "lat": 50.1109,
       "lng": 8.6821,
       "metrics": {
-        "weather": 11.06,
+        "weather": 9.94,
         "pois": 1473,
         "transit": 625,
-        "air": null
+        "air": 16
       },
       "normalized": {
         "weather": 100.0,
         "pois": 63.3,
         "transit": 84.1,
-        "air": 0
+        "air": 100.0
       },
-      "score": 65.0
+      "score": 85.0
     },
     {
       "id": "berlin",
@@ -36,102 +36,18 @@
       "lat": 52.52,
       "lng": 13.405,
       "metrics": {
-        "weather": 9.6,
+        "weather": 9.02,
         "pois": 2140,
         "transit": 630,
-        "air": 16
+        "air": 20
       },
       "normalized": {
-        "weather": 14.1,
+        "weather": 46.5,
         "pois": 100.0,
         "transit": 85.1,
-        "air": 42.9
+        "air": 20.0
       },
-      "score": 63.4
-    },
-    {
-      "id": "koeln",
-      "name": "Köln",
-      "state": "Nordrhein-Westfalen",
-      "population": 1087000,
-      "lat": 50.9375,
-      "lng": 6.9603,
-      "metrics": {
-        "weather": 9.91,
-        "pois": 1254,
-        "transit": 397,
-        "air": 13
-      },
-      "normalized": {
-        "weather": 32.4,
-        "pois": 51.2,
-        "transit": 37.6,
-        "air": 85.7
-      },
-      "score": 50.0
-    },
-    {
-      "id": "hamburg",
-      "name": "Hamburg",
-      "state": "Hamburg",
-      "population": 1902000,
-      "lat": 53.5511,
-      "lng": 9.9937,
-      "metrics": {
-        "weather": 9.36,
-        "pois": 1494,
-        "transit": 404,
-        "air": 14
-      },
-      "normalized": {
-        "weather": 0.0,
-        "pois": 64.4,
-        "transit": 39.0,
-        "air": 71.4
-      },
-      "score": 43.4
-    },
-    {
-      "id": "leipzig",
-      "name": "Leipzig",
-      "state": "Sachsen",
-      "population": 616000,
-      "lat": 51.3397,
-      "lng": 12.3731,
-      "metrics": {
-        "weather": 10.38,
-        "pois": 692,
-        "transit": 508,
-        "air": 17
-      },
-      "normalized": {
-        "weather": 60.0,
-        "pois": 20.2,
-        "transit": 60.2,
-        "air": 28.6
-      },
-      "score": 41.8
-    },
-    {
-      "id": "muenchen",
-      "name": "München",
-      "state": "Bayern",
-      "population": 1512000,
-      "lat": 48.1351,
-      "lng": 11.582,
-      "metrics": {
-        "weather": 10.32,
-        "pois": 1887,
-        "transit": 213,
-        "air": null
-      },
-      "normalized": {
-        "weather": 56.5,
-        "pois": 86.1,
-        "transit": 0.0,
-        "air": 0
-      },
-      "score": 40.0
+      "score": 66.9
     },
     {
       "id": "duesseldorf",
@@ -141,39 +57,81 @@
       "lat": 51.2277,
       "lng": 6.7735,
       "metrics": {
-        "weather": 9.51,
+        "weather": 8.22,
         "pois": 1016,
         "transit": 703,
+        "air": 17
+      },
+      "normalized": {
+        "weather": 0.0,
+        "pois": 38.1,
+        "transit": 100.0,
+        "air": 80.0
+      },
+      "score": 52.4
+    },
+    {
+      "id": "muenchen",
+      "name": "München",
+      "state": "Bayern",
+      "population": 1512000,
+      "lat": 48.1351,
+      "lng": 11.582,
+      "metrics": {
+        "weather": 9.55,
+        "pois": 1889,
+        "transit": 213,
+        "air": 20
+      },
+      "normalized": {
+        "weather": 77.3,
+        "pois": 86.2,
+        "transit": 0.0,
+        "air": 20.0
+      },
+      "score": 49.2
+    },
+    {
+      "id": "hamburg",
+      "name": "Hamburg",
+      "state": "Hamburg",
+      "population": 1902000,
+      "lat": 53.5511,
+      "lng": 9.9937,
+      "metrics": {
+        "weather": 8.87,
+        "pois": 1494,
+        "transit": 404,
         "air": null
       },
       "normalized": {
-        "weather": 8.8,
-        "pois": 38.1,
-        "transit": 100.0,
+        "weather": 37.8,
+        "pois": 64.4,
+        "transit": 39.0,
         "air": 0
       },
-      "score": 38.6
+      "score": 38.5
     },
     {
-      "id": "dortmund",
-      "name": "Dortmund",
-      "state": "Nordrhein-Westfalen",
-      "population": 587000,
-      "lat": 51.5136,
-      "lng": 7.4653,
+      "id": "leipzig",
+      "name": "Leipzig",
+      "state": "Sachsen",
+      "population": 616000,
+      "lat": 51.3397,
+      "lng": 12.3731,
       "metrics": {
-        "weather": 9.51,
-        "pois": 352,
-        "transit": 385,
-        "air": 12
+        "weather": 9.17,
+        "pois": 692,
+        "transit": 506,
+        "air": null
       },
       "normalized": {
-        "weather": 8.8,
-        "pois": 1.5,
-        "transit": 35.1,
-        "air": 100.0
+        "weather": 55.2,
+        "pois": 20.2,
+        "transit": 59.8,
+        "air": 0
       },
-      "score": 31.4
+      "score": 34.8
     },
     {
       "id": "stuttgart",
@@ -183,18 +141,39 @@
       "lat": 48.7758,
       "lng": 9.1829,
       "metrics": {
-        "weather": 9.95,
+        "weather": 9.23,
         "pois": 719,
         "transit": 388,
-        "air": 19
+        "air": null
       },
       "normalized": {
-        "weather": 34.7,
+        "weather": 58.7,
         "pois": 21.7,
         "transit": 35.7,
-        "air": 0.0
+        "air": 0
       },
-      "score": 24.1
+      "score": 30.1
+    },
+    {
+      "id": "koeln",
+      "name": "Köln",
+      "state": "Nordrhein-Westfalen",
+      "population": 1087000,
+      "lat": 50.9375,
+      "lng": 6.9603,
+      "metrics": {
+        "weather": 8.53,
+        "pois": 1254,
+        "transit": 397,
+        "air": null
+      },
+      "normalized": {
+        "weather": 18.0,
+        "pois": 51.2,
+        "transit": 37.6,
+        "air": 0
+      },
+      "score": 29.3
     },
     {
       "id": "essen",
@@ -204,18 +183,39 @@
       "lat": 51.4556,
       "lng": 7.0116,
       "metrics": {
-        "weather": 9.51,
+        "weather": 8.22,
         "pois": 325,
         "transit": 397,
         "air": null
       },
       "normalized": {
-        "weather": 8.8,
+        "weather": 0.0,
         "pois": 0.0,
         "transit": 37.6,
         "air": 0
       },
-      "score": 11.6
+      "score": 9.4
+    },
+    {
+      "id": "dortmund",
+      "name": "Dortmund",
+      "state": "Nordrhein-Westfalen",
+      "population": 587000,
+      "lat": 51.5136,
+      "lng": 7.4653,
+      "metrics": {
+        "weather": 8.22,
+        "pois": 352,
+        "transit": 385,
+        "air": 21
+      },
+      "normalized": {
+        "weather": 0.0,
+        "pois": 1.5,
+        "transit": 35.1,
+        "air": 0.0
+      },
+      "score": 9.2
     }
   ]
 }
