@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24T09:24:42.635821+00:00",
+  "updated": "2026-09-25T09:47:15.088165+00:00",
   "weights": {
     "weather": 0.25,
     "pois": 0.3,
@@ -15,18 +15,18 @@
       "lat": 52.52,
       "lng": 13.405,
       "metrics": {
-        "weather": 4.43,
-        "pois": 2149,
+        "weather": 5.48,
+        "pois": 2146,
         "transit": 633,
         "air": null
       },
       "normalized": {
-        "weather": 36.2,
+        "weather": 44.5,
         "pois": 100.0,
         "transit": 86.4,
         "air": 0
       },
-      "score": 60.7
+      "score": 62.7
     },
     {
       "id": "frankfurt",
@@ -36,60 +36,18 @@
       "lat": 50.1109,
       "lng": 8.6821,
       "metrics": {
-        "weather": 5.77,
-        "pois": 1480,
+        "weather": 6.57,
+        "pois": 1483,
         "transit": 625,
         "air": null
       },
       "normalized": {
-        "weather": 69.8,
-        "pois": 63.3,
+        "weather": 68.0,
+        "pois": 63.6,
         "transit": 84.7,
         "air": 0
       },
-      "score": 57.6
-    },
-    {
-      "id": "hamburg",
-      "name": "Hamburg",
-      "state": "Hamburg",
-      "population": 1902000,
-      "lat": 53.5511,
-      "lng": 9.9937,
-      "metrics": {
-        "weather": 4.01,
-        "pois": 1492,
-        "transit": 408,
-        "air": 25
-      },
-      "normalized": {
-        "weather": 25.6,
-        "pois": 63.9,
-        "transit": 40.0,
-        "air": 83.3
-      },
-      "score": 52.2
-    },
-    {
-      "id": "koeln",
-      "name": "Köln",
-      "state": "Nordrhein-Westfalen",
-      "population": 1087000,
-      "lat": 50.9375,
-      "lng": 6.9603,
-      "metrics": {
-        "weather": 4.28,
-        "pois": 1259,
-        "transit": 397,
-        "air": 24
-      },
-      "normalized": {
-        "weather": 32.4,
-        "pois": 51.2,
-        "transit": 37.7,
-        "air": 91.7
-      },
-      "score": 51.2
+      "score": 57.3
     },
     {
       "id": "muenchen",
@@ -99,14 +57,14 @@
       "lat": 48.1351,
       "lng": 11.582,
       "metrics": {
-        "weather": 6.97,
+        "weather": 8.05,
         "pois": 1893,
         "transit": 214,
         "air": null
       },
       "normalized": {
         "weather": 100.0,
-        "pois": 85.9,
+        "pois": 86.1,
         "transit": 0.0,
         "air": 0
       },
@@ -120,39 +78,18 @@
       "lat": 51.3397,
       "lng": 12.3731,
       "metrics": {
-        "weather": 3.65,
+        "weather": 4.73,
         "pois": 694,
         "transit": 501,
         "air": 23
       },
       "normalized": {
-        "weather": 16.6,
-        "pois": 20.1,
+        "weather": 28.3,
+        "pois": 20.2,
         "transit": 59.2,
-        "air": 100.0
+        "air": 94.4
       },
-      "score": 45.0
-    },
-    {
-      "id": "duesseldorf",
-      "name": "Düsseldorf",
-      "state": "Nordrhein-Westfalen",
-      "population": 631000,
-      "lat": 51.2277,
-      "lng": 6.7735,
-      "metrics": {
-        "weather": 2.99,
-        "pois": 1024,
-        "transit": 699,
-        "air": null
-      },
-      "normalized": {
-        "weather": 0.0,
-        "pois": 38.3,
-        "transit": 100.0,
-        "air": 0
-      },
-      "score": 36.5
+      "score": 46.8
     },
     {
       "id": "stuttgart",
@@ -162,18 +99,60 @@
       "lat": 48.7758,
       "lng": 9.1829,
       "metrics": {
-        "weather": 5.58,
+        "weather": 6.74,
         "pois": 721,
-        "transit": 390,
-        "air": 35
+        "transit": 388,
+        "air": 32
       },
       "normalized": {
-        "weather": 65.1,
-        "pois": 21.6,
-        "transit": 36.3,
+        "weather": 71.7,
+        "pois": 21.7,
+        "transit": 35.9,
+        "air": 44.4
+      },
+      "score": 42.3
+    },
+    {
+      "id": "duesseldorf",
+      "name": "Düsseldorf",
+      "state": "Nordrhein-Westfalen",
+      "population": 631000,
+      "lat": 51.2277,
+      "lng": 6.7735,
+      "metrics": {
+        "weather": 3.81,
+        "pois": 1025,
+        "transit": 699,
+        "air": null
+      },
+      "normalized": {
+        "weather": 8.4,
+        "pois": 38.4,
+        "transit": 100.0,
+        "air": 0
+      },
+      "score": 38.6
+    },
+    {
+      "id": "koeln",
+      "name": "Köln",
+      "state": "Nordrhein-Westfalen",
+      "population": 1087000,
+      "lat": 50.9375,
+      "lng": 6.9603,
+      "metrics": {
+        "weather": 4.96,
+        "pois": 1259,
+        "transit": 395,
+        "air": 40
+      },
+      "normalized": {
+        "weather": 33.3,
+        "pois": 51.2,
+        "transit": 37.3,
         "air": 0.0
       },
-      "score": 31.8
+      "score": 33.0
     },
     {
       "id": "essen",
@@ -183,18 +162,39 @@
       "lat": 51.4556,
       "lng": 7.0116,
       "metrics": {
-        "weather": 2.99,
+        "weather": 3.81,
         "pois": 327,
         "transit": 397,
-        "air": 24
+        "air": 30
+      },
+      "normalized": {
+        "weather": 8.4,
+        "pois": 0.0,
+        "transit": 37.7,
+        "air": 55.6
+      },
+      "score": 22.6
+    },
+    {
+      "id": "hamburg",
+      "name": "Hamburg",
+      "state": "Hamburg",
+      "population": 1902000,
+      "lat": 53.5511,
+      "lng": 9.9937,
+      "metrics": {
+        "weather": 3.42,
+        "pois": null,
+        "transit": null,
+        "air": 22
       },
       "normalized": {
         "weather": 0.0,
-        "pois": 0.0,
-        "transit": 37.7,
-        "air": 91.7
+        "pois": 0,
+        "transit": 0,
+        "air": 100.0
       },
-      "score": 27.8
+      "score": 20.0
     },
     {
       "id": "dortmund",
@@ -204,18 +204,18 @@
       "lat": 51.5136,
       "lng": 7.4653,
       "metrics": {
-        "weather": 2.99,
+        "weather": 3.81,
         "pois": 349,
         "transit": 384,
         "air": null
       },
       "normalized": {
-        "weather": 0.0,
+        "weather": 8.4,
         "pois": 1.2,
         "transit": 35.1,
         "air": 0
       },
-      "score": 9.1
+      "score": 11.2
     }
   ]
 }
